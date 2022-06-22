@@ -30,12 +30,19 @@ const PlaceOrderScreen = () => {
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
 
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`);
+    }
+    // eslint-disable-next-line
+  }, [navigate, success, order]);
+
   const placeOrderHandler = () => {
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
+        paymentMethod: cart.paymentMethod.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
@@ -43,13 +50,6 @@ const PlaceOrderScreen = () => {
       })
     );
   };
-
-  useEffect(() => {
-    if (success) {
-      navigate(`/order/${order._id}`);
-    }
-    // eslint-disable-next-line
-  }, [navigate, success]);
 
   return (
     <>
@@ -69,8 +69,7 @@ const PlaceOrderScreen = () => {
 
             <ListGroup.Item>
               <h2>Payment Method</h2>
-              <strong>Method : </strong>
-              {cart.paymentMethod.paymentMethod}
+              <strong>Method : {cart.paymentMethod.paymentMethod} </strong>
             </ListGroup.Item>
 
             <ListGroup.Item>

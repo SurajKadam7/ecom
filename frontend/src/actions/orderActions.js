@@ -16,7 +16,6 @@ export const createOrder = (order) => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
 
-    console.log(userInfo.token);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +31,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       payload: data,
     });
 
-    localStorage.setItem("userInfo", JSON.stringify(data));
+    // localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: ORDER_CREATE_FAIL,
