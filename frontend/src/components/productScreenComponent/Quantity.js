@@ -1,4 +1,5 @@
-import { React, useState } from "react";
+import React from "react";
+import { useState } from "react";
 
 import { Col, Row, ListGroupItem, FormControl } from "react-bootstrap";
 
@@ -13,6 +14,8 @@ const Quantity = ({ product }) => {
     selectedQuantity.qty = e.target.value;
     setQty(e.target.value);
   };
+
+  console.log(qty);
   return (
     <ListGroupItem>
       <Row>

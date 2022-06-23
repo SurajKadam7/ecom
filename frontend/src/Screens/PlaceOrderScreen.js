@@ -37,16 +37,17 @@ const PlaceOrderScreen = () => {
     // eslint-disable-next-line
   }, [navigate, success, order]);
 
+  const copy_cart = { ...cart };
   const placeOrderHandler = () => {
     dispatch(
       createOrder({
-        orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice,
+        orderItems: copy_cart.cartItems,
+        shippingAddress: copy_cart.shippingAddress,
+        paymentMethod: copy_cart.paymentMethod.paymentMethod,
+        itemsPrice: copy_cart.itemsPrice,
+        shippingPrice: copy_cart.shippingPrice,
+        taxPrice: copy_cart.taxPrice,
+        totalPrice: copy_cart.totalPrice,
       })
     );
   };
@@ -95,7 +96,8 @@ const PlaceOrderScreen = () => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} X ${item.price} = ${item.qty * item.price}{" "}
+                          {item.qty} X ${item.price} = $
+                          {(item.qty * item.price).toFixed(2)}{" "}
                         </Col>
                       </Row>
                     </ListGroup.Item>

@@ -5,6 +5,7 @@ import { productDetailReducer } from "./reducers/productReducers/productDetailRe
 
 import { cartReducer } from "./reducers/CartReducer";
 import { orderCreateReducer } from "./reducers/orderReducers";
+import { orderDetailsReducer, orderPayReducer } from "./reducers/orderReducers";
 
 import {
   userLoginReducer,
@@ -38,6 +39,8 @@ const reducer = {
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
   orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer,
 };
 
 const preloadedState = {
