@@ -4,8 +4,12 @@ import { productListReducer } from "./reducers/productReducers/productListReduce
 import { productDetailReducer } from "./reducers/productReducers/productDetailReducer";
 
 import { cartReducer } from "./reducers/CartReducer";
-import { orderCreateReducer } from "./reducers/orderReducers";
-import { orderDetailsReducer, orderPayReducer } from "./reducers/orderReducers";
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderPayReducer,
+  orderListMyReducer,
+} from "./reducers/orderReducers";
 
 import {
   userLoginReducer,
@@ -41,6 +45,7 @@ const reducer = {
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
+  orderListMy: orderListMyReducer,
 };
 
 const preloadedState = {
