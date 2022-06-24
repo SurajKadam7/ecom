@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import TotalProductScreen from "../components/productScreenComponent/TotalProductScreen";
 
 import { useDispatch, useSelector } from "react-redux";
-import { listProductDetails } from "../actions/productActions/productDetailAction";
+import { listProductDetails } from "../actions/productActions";
 
 import Message from "../components/Message";
 import Loader from "../components/Loader";

@@ -106,7 +106,6 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
       paymentResult,
       config
     );
-
     dispatch({
       type: ORDER_PAY_SUCCESS,
       payload: data,
