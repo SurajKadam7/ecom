@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { PayPalButton } from "react-paypal-button-v2";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
@@ -10,15 +11,14 @@ import {
   payOrder,
   deliverOrder,
 } from "../actions/orderActions";
-import axios from "axios";
-import { PayPalButton } from "react-paypal-button-v2";
+
 import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
 } from "../constants/OrderConstant";
 
 const OrderScreen = () => {
-  const { id } = useParams();
+  const { id: orderId } = useParams();
   const navigate = useNavigate();
 
   const [sdkReady, setSdkReady] = useState(false);
@@ -37,7 +37,7 @@ const OrderScreen = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  if (!loading && order) {
+  if (!loading) {
     //   Calculate prices
     const addDecimals = (num) => {
       return (Math.round(num * 100) / 100).toFixed(2);
@@ -49,7 +49,7 @@ const OrderScreen = () => {
   }
 
   useEffect(() => {
-    if (userInfo) {
+    if (!userInfo) {
       navigate("/login");
     }
 
@@ -65,10 +65,10 @@ const OrderScreen = () => {
       document.body.appendChild(script);
     };
 
-    if (!order || successPay || successDeliver) {
+    if (!order || successPay || successDeliver || order._id !== orderId) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
-      dispatch(getOrderDetails(id));
+      dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if (!window.paypal) {
         addPayPalScript();
@@ -76,11 +76,11 @@ const OrderScreen = () => {
         setSdkReady(true);
       }
     }
-  }, [id, dispatch, successPay, order, successDeliver]);
+  }, [dispatch, orderId, successPay, successDeliver, order]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);
-    dispatch(payOrder(id, paymentResult));
+    dispatch(payOrder(orderId, paymentResult));
   };
 
   const deliverHandler = () => {
@@ -157,8 +157,7 @@ const OrderScreen = () => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = $
-                          {(item.qty * item.price).toFixed(2)}
+                          {item.qty} x ${item.price} = ${item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>
