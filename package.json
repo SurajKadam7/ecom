@@ -4,7 +4,8 @@
   "description": "ecom website",
   "main": "server.js",
   "engines": {
-    "node": "16.15.0"
+    "node": "16.x",
+    "npm": "8.x"
   },
   "type": "module",
   "scripts": {
