@@ -13,7 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { login, register } from "../actions/userAction";
+import { register } from "../actions/userAction";
 import FormContainer from "../components/FormContainer";
 
 // -------------------------------------------------------------------------------------------------------------

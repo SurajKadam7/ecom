@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Button,
-  Col,
-  FormControl,
-  FormGroup,
-  FormLabel,
-} from "react-bootstrap";
+import { Form, Button, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
 import { useNavigate } from "react-router-dom";
 import { savePaymentMethod } from "../actions/cartAction";
 import Checkoutsteps from "../components/Checkoutsteps";
-// `https://www.paypal.com/sdk/js?client-id=${clientId}`
+
 const PaymentScreen = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);

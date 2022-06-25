@@ -15,7 +15,6 @@ const Quantity = ({ product }) => {
     setQty(e.target.value);
   };
 
-  console.log(qty);
   return (
     <ListGroupItem>
       <Row>
