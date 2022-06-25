@@ -36,7 +36,8 @@ const ProfileScreen = () => {
     if (!userInfo) {
       navigate("/login");
     } else {
-      if ((!user || !user.name) && !success) {
+      if (!user || !user.name || success) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile"));
         dispatch(listMyOrders());
       } else {
@@ -48,15 +49,10 @@ const ProfileScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
     } else {
-      setMessage(null);
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
-      // my modifications
-      dispatch({ type: USER_UPDATE_PROFILE_RESET });
-      dispatch(getUserDetails("profile"));
     }
   };
 
