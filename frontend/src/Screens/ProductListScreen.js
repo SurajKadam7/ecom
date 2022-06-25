@@ -5,7 +5,7 @@ import { Table, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-// import Paginate from "../components/Paginate";
+import Paginate from "../components/Paginate";
 import {
   listProducts,
   deleteProduct,
@@ -15,7 +15,7 @@ import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 
 const ProductListScreen = () => {
   // find page number
-  const { page: pageNumber } = useParams();
+  const { pageNumber } = useParams();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -132,7 +132,7 @@ const ProductListScreen = () => {
               ))}
             </tbody>
           </Table>
-          {/* <Paginate pages={pages} page={page} isAdmin={true} /> */}
+          <Paginate pages={pages} page={page} isAdmin={true} />
         </>
       )}
     </>
