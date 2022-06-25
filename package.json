@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "ecom website",
   "main": "server.js",
+  "engines": {
+    "node": "16.15.0"
+  },
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
