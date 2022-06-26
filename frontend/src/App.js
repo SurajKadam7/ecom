@@ -18,59 +18,64 @@ import UserEditScreen from "./Screens/UserEditScreen";
 import ProductListScreen from "./Screens/ProductListScreen";
 import ProductEditScreen from "./Screens/ProductEditScreen";
 import OrderListScreen from "./Screens/OrderListScreen";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 function App() {
+  const clientId =
+    "AZKCH5omi0q8hlAFZ0NUtqkmWhTLAr5lpNqkcp78FKYxe7S8V3jpIAIbdAEhhukXEQfVxOiCsQDc0k1x";
   return (
-    <Router>
-      <Header />
-      <main className="py-3">
-        <Container>
-          <Routes>
-            <Route path="/" element={<HomeScreen />} />
-            <Route path="/page/:pageNumber" element={<HomeScreen />} />
-            <Route path="/search/:keyword" element={<HomeScreen />} exact />
-            <Route
-              path="/search/:keyword/page/:pageNumber"
-              element={<HomeScreen />}
-            />
+    <PayPalScriptProvider options={{ "client-id": clientId }}>
+      <Router>
+        <Header />
+        <main className="py-3">
+          <Container>
+            <Routes>
+              <Route path="/" element={<HomeScreen />} />
+              <Route path="/page/:pageNumber" element={<HomeScreen />} />
+              <Route path="/search/:keyword" element={<HomeScreen />} exact />
+              <Route
+                path="/search/:keyword/page/:pageNumber"
+                element={<HomeScreen />}
+              />
 
-            <Route path="/login" element={<LoginScreen />} />
-            <Route path="/payment" element={<PaymentScreen />} />
-            <Route path="/register" element={<RegisterScreen />} />
-            <Route path="/shipping" element={<ShippingScreen />} />
-            <Route path="/placeorder" element={<PlaceOrderScreen />} />
-            <Route path="/order/:id" element={<OrderScreen />} />
+              <Route path="/login" element={<LoginScreen />} />
+              <Route path="/payment" element={<PaymentScreen />} />
+              <Route path="/register" element={<RegisterScreen />} />
+              <Route path="/shipping" element={<ShippingScreen />} />
+              <Route path="/placeorder" element={<PlaceOrderScreen />} />
+              <Route path="/order/:id" element={<OrderScreen />} />
 
-            <Route path="/product/:id" element={<ProductScreen />} />
-            <Route path="/profile" element={<ProfileScreen />} />
-            {/* this thing make /:id optional if we only use /cart then also it work */}
-            <Route path="/cart">
-              <Route path="" element={<CartScreen />} />
-              <Route path=":id" element={<CartScreen />} />
-            </Route>
-            <Route path="/admin/userList" element={<UserListScreen />} />
-            <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
-            <Route
-              path="/admin/productlist"
-              element={<ProductListScreen />}
-              exact
-            />
-            <Route
-              path="/admin/productlist/:pageNumber"
-              element={<ProductListScreen exact />}
-            />
+              <Route path="/product/:id" element={<ProductScreen />} />
+              <Route path="/profile" element={<ProfileScreen />} />
+              {/* this thing make /:id optional if we only use /cart then also it work */}
+              <Route path="/cart">
+                <Route path="" element={<CartScreen />} />
+                <Route path=":id" element={<CartScreen />} />
+              </Route>
+              <Route path="/admin/userList" element={<UserListScreen />} />
+              <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
+              <Route
+                path="/admin/productlist"
+                element={<ProductListScreen />}
+                exact
+              />
+              <Route
+                path="/admin/productlist/:pageNumber"
+                element={<ProductListScreen exact />}
+              />
 
-            <Route
-              path="/admin/product/:id/edit"
-              element={<ProductEditScreen />}
-            />
-            <Route path="/admin/orderlist" element={<OrderListScreen />} />
-          </Routes>
-        </Container>
-      </main>
+              <Route
+                path="/admin/product/:id/edit"
+                element={<ProductEditScreen />}
+              />
+              <Route path="/admin/orderlist" element={<OrderListScreen />} />
+            </Routes>
+          </Container>
+        </main>
 
-      <Footer />
-    </Router>
+        <Footer />
+      </Router>
+    </PayPalScriptProvider>
   );
 }
 

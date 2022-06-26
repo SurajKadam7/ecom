@@ -41,6 +41,11 @@ const LoginScreen = () => {
     dispatch(login(email, password));
   };
 
+  const product = {
+    description: "this is our product",
+    price: 15,
+  };
+
   return (
     <FormContainer>
       <h1>Sign In</h1>

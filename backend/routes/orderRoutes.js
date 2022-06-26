@@ -18,7 +18,7 @@ router.route("/myorders").get(protect, getMyOrders);
 // make sure that this /:id rote is always below the "/" rote bcz if it is on upper side it consider id as nothing and run itself
 router.route("/:id").get(protect, getOrderById);
 
-router.route("/:id/pay").put(protect, updateOrderToPaid);
+router.route("/:id/pay").put(updateOrderToPaid);
 router.route("/:id/deliver").put(protect, admin, updateOrderToDelivered);
 
 export default router;
