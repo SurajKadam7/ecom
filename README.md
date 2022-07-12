@@ -1,5 +1,9 @@
 # Eshop Website
 
+## Created by:
+#### 1) Suraj Kadam - surajskadam7@gmail.com
+#### 2) Prathmesh Patil - prathmeshpatilp@gmail.com
+
 ## Features
 
 - Full featured shopping cart
